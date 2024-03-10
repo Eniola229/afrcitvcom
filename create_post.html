@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post Form</title>
+</head>
+<body>
+    <h1>Create Post</h1>
+    <form enctype="multipart/form-data" id="createNewsForm" method="POST">
+        <label for="body">Body:</label>
+        <input type="text" id="body" name="body" required><br><br>
+        <label for="Intro">Intro:</label>
+        <input type="text" id="Intro" name="Intro" required><br><br>
+        <label for="extra_paragraph">Extra Paragraph:</label>
+        <input type="text" id="extra_paragraph" name="extra_paragraph" required><br><br>
+        <label for="category">Category:</label>
+        <select name="category" id="category" required>
+            <option value="Politics">Politics</option>
+            <option value="Business">Business</option>
+            <option value="Food">Food</option>
+            <option value="Sport">Sport</option>
+        </select><br><br>
+        <label for="source">Source:</label>
+        <input type="text" id="source" name="source" required><br><br>
+        <label for="tags">Tags:</label>
+        <input type="text" id="tags" name="tags" required><br><br>
+        <label for="essentials_link">Essentials Link:</label>
+        <input type="text" id="essentials_link" name="essentials_link" required><br><br>
+        <label for="share_url">Share URL:</label>
+        <input type="text" id="share_url" name="share_url" required><br><br>
+        <label for="img">Image/Video:</label>
+         <input type="text" id="img" name="img" required><br><br>
+        <label for="subimgs">Sub-images:</label>
+        <input type="text" id="subimgs" name="subimgs" required><br><br>
+        <label for="number_of_views">Number of Views:</label>
+        <input type="text" id="number_of_views" name="number_of_views" required><br><br>
+        <label for="read_time">Read Time:</label>
+        <input type="text" id="read_time" name="read_time" required><br><br>
+
+        <button type="submit">Create Post</button>
+    </form>
+
+    <script>
+        document.getElementById('createNewsForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(this);
+
+            // Convert form data to JSON object
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            // Make POST request to your API endpoint
+            fetch('http://localhost/africtvApi/body/create.php', { 
+                method: 'POST',
+                body: formData // Send form data directly
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle API response
+                alert(data.message); // Show success or error message
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
