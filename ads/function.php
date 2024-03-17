@@ -32,8 +32,6 @@ function storeAds($adsInput) {
         return error422('Enter your ads_start');
     } elseif (empty($number_of_views)) {
         return error422('Enter your number_of_views');
-    } elseif (empty($description)) {
-        return error422('Enter your description');
     } elseif (empty($ads_end)) {
         return error422('Enter your ads_end');
     }
@@ -132,7 +130,7 @@ function getAds($adsParams) {
     }
 
     $adsId = htmlspecialchars($adsParams['ads_id']); // Sanitize input
-    $query = "SELECT * FROM posts WHERE ads_id=?";
+    $query = "SELECT * FROM ads WHERE ads_id=?";
     $stmt = $pdo->prepare($query);
     
     try {

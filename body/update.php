@@ -5,7 +5,7 @@
 header('Access-Control-Allow-Origin:*');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Method: PUT');
-header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow_Headers, Authorization, x-Request-With');
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, x-Request-With');
 
 include "function.php";
 
@@ -23,10 +23,10 @@ if ($requestMethod == "PUT")
     }
     else
     {
-        $storeNews = storeNews($_POST);
+        $storeNews = storeNews($inputData);
     }
 
-    echo storeNews;
+    echo $storeNews;
   
 }
 else

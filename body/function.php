@@ -32,15 +32,8 @@ function storeNews($newsInput) {
     $read_time = isset($newsInput['read_time']) ? trim($newsInput['read_time']) : '';
 
 
-    if (empty($body)) 
-    {
-        return error422('Enter your body');
-    } elseif (empty($Intro))
-    {
-        return error422('Enter your Intro');
-    } elseif (empty($extra_paragraph))
-    {
-        return error422('Enter your extra_paragraph');
+    if (empty($body) && empty($img)) {
+    return error422('Enter your body or Upload an Image');
     }
     elseif (empty($category)) 
     {
@@ -50,37 +43,8 @@ function storeNews($newsInput) {
     {
         return error422('Enter your source');
     }
-    elseif (empty($tags)) 
-    {
-        return error422('Enter your tags');
-    }
-     elseif (empty($essentials_link)) 
-    {
-        return error422('Enter your essentials_link');
-    }
-     elseif (empty($share_url)) 
-    {
-        return error422('Enter your share_url');
-    }
-     elseif (empty($img)) 
-    {
-        return error422('Enter your img');
-    }
-     elseif (empty($subimgs)) 
-    {
-        return error422('Enter your subimgs');
-    }
-     elseif (empty($number_of_views)) 
-    {
-        return error422('Enter your number_of_views');
-    }
-    elseif (empty($read_time)) 
-    {
-        return error422('Enter your read_time');
-    }
 
-     var_dump($body);
-    var_dump($Intro);
+  
     
     // Prepare SQL statement
     $query = "INSERT INTO posts (body, Intro, extra_paragraph, category, source, tags, essentials_link, share_url, img, subimgs, number_of_views, read_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
